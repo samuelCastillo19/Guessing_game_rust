@@ -17,7 +17,10 @@ fn main() {
         io::stdin()                                                                 //Lectura del dato ingresado
             .read_line(&mut guess)                                                  //Se asigna el dato ingresado a la variable guess
             .expect("Failed to read line");                                         //Manejo de un posibe error por ingresar un dato invalido
-        let guess: u32 = guess.trim().parse().expect("Please type a number!");      //Se convierte a int el dato ingresado, siempre y cuando sea un numero
+        let guess: u32 = match guess.trim().parse() {
+            Ok(num) => num,
+            Err(_) => continue,
+        };                                                                          //Se convierte a int el dato ingresado, siempre y cuando sea un numero
 
 
         // Se imprime el numero ingresado y ya convertido a entero
